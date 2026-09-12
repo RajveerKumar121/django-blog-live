@@ -1,0 +1,4 @@
+{% extends 'base.html' %} {% block content %} {{ post.title }} By {{
+post.author.username }} • {{ post.created_at|date:"M d, Y" }} {{ post.content }}
+{% if user == post.author %} {% csrf_token %} Delete Post {% endif %} {%
+endblock %}

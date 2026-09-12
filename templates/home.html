@@ -1,0 +1,5 @@
+{% extends 'base.html' %} {% block content %} {% for post in posts %} [{{
+post.title }}]({% url 'post_detail' post.pk %}) {{ post.content|truncatewords:30
+}} By {{ post.author.username }} • {{ post.created_at|date:"M d, Y" }} {% empty
+%} No stories published yet. Register or log in to create the first one! {%
+endfor %} {% endblock %}
