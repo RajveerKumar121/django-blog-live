@@ -1,4 +1,33 @@
-{% extends 'base.html' %} {% block content %} {{ post.title }} By {{
-post.author.username }} • {{ post.created_at|date:"M d, Y" }} {{ post.content }}
-{% if user == post.author %} {% csrf_token %} Delete Post {% endif %} {%
-endblock %}
+{% extends 'base.html' %} {% block content %}
+
+<article class="card">
+  <h1>{{ post.title }}</h1>
+
+  <p class="meta">
+    By {{ post.author.username }} • {{ post.created_at|date:"M d, Y" }}
+  </p>
+
+  <br />
+
+  <div>{{ post.content|linebreaks }}</div>
+
+  {% if user == post.author %}
+
+  <br />
+
+  <form
+    method="post"
+    action="{% url 'post_delete' post.pk %}"
+    class="delete-form"
+  >
+    {% csrf_token %}
+
+    <button type="submit" class="btn btn-danger">Delete Post</button>
+  </form>
+
+  {% endif %}
+</article>
+
+<a href="{% url 'post_list' %}"> ← Back to Stories </a>
+
+{% endblock %}

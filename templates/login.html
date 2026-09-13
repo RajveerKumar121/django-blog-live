@@ -1,2 +1,22 @@
-{% extends 'base.html' %} {% block content %} Sign In {% csrf_token %} {{
-form.as_p }} Login {% endblock %}
+{% extends 'base.html' %} {% block content %}
+
+<div class="card">
+  <h1>Sign In</h1>
+
+  <br />
+
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+
+    <button type="submit" class="btn">Login</button>
+  </form>
+
+  <br />
+
+  <p>
+    Don't have an account?
+    <a href="{% url 'register' %}"> Register here </a>
+  </p>
+</div>
+
+{% endblock %}
